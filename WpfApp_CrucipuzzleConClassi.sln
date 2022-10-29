@@ -5,6 +5,10 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp_CrucipuzzleConClassi", "WpfApp_CrucipuzzleConClassi\WpfApp_CrucipuzzleConClassi.csproj", "{DF03150E-4A6B-4C1F-954F-AC8D664ED641}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp_CrucipuzzleConClassi", "ConsoleApp_CrucipuzzleConClassi\ConsoleApp_CrucipuzzleConClassi.csproj", "{6417AB0F-5DA0-45FE-983B-58C8F3772B4E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedProject_Crucipuzzle", "SharedProject_Crucipuzzle\SharedProject_Crucipuzzle.shproj", "{413D5764-5797-4599-8265-9C16DFBFBDEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +19,20 @@ Global
 		{DF03150E-4A6B-4C1F-954F-AC8D664ED641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF03150E-4A6B-4C1F-954F-AC8D664ED641}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF03150E-4A6B-4C1F-954F-AC8D664ED641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6417AB0F-5DA0-45FE-983B-58C8F3772B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6417AB0F-5DA0-45FE-983B-58C8F3772B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6417AB0F-5DA0-45FE-983B-58C8F3772B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6417AB0F-5DA0-45FE-983B-58C8F3772B4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00165985-064B-4697-A41F-CC51FA054B4D}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedProject_Crucipuzzle\SharedProject_Crucipuzzle.projitems*{413d5764-5797-4599-8265-9c16dfbfbdee}*SharedItemsImports = 13
+		SharedProject_Crucipuzzle\SharedProject_Crucipuzzle.projitems*{6417ab0f-5da0-45fe-983b-58c8f3772b4e}*SharedItemsImports = 4
+		SharedProject_Crucipuzzle\SharedProject_Crucipuzzle.projitems*{df03150e-4a6b-4c1f-954f-ac8d664ed641}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
