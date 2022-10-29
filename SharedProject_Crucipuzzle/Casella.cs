@@ -38,7 +38,7 @@ namespace SharedProject_Crucipuzzle
         {
             _carattere = carattere;
             _impegnata = false;
-            // TODO: Aggiungere quello che può servire
+            // TODO: Aggiungere altro che può servire
         }
 
         public char Carattere { get; set; }
