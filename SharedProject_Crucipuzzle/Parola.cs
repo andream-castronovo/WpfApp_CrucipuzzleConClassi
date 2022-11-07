@@ -6,6 +6,8 @@ namespace SharedProject_Crucipuzzle
 {
     public class Parola
     {
+        // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
+
         string _contenuto;
         int _x;
         int _y;

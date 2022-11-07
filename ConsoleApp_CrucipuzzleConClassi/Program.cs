@@ -9,6 +9,8 @@ namespace ConsoleApp_CrucipuzzleConClassi
         
         static void Main(string[] args)
         {
+            // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
+
             const string DEFAULT_PATH = @"..\..\Crucipuzzle.txt";
 
             Console.WriteLine("Hello world");

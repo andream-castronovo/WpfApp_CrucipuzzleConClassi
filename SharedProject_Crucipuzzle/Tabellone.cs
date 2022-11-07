@@ -5,6 +5,7 @@ namespace SharedProject_Crucipuzzle
 {
     internal class Tabellone
     {
+        // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
 
         // Non posso fare un indicizzatore?
         private Casella[,] _caselle; // TODO: Serve altro, implementarlo

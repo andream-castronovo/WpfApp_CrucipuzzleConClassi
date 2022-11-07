@@ -4,6 +4,8 @@ using System.Text;
 
 namespace SharedProject_Crucipuzzle
 {
+    // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
+
     public enum Direzione : byte
     {
         NULL,        // Nessuna direzione

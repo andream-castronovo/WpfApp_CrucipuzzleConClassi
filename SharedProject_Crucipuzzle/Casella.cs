@@ -9,6 +9,8 @@ namespace SharedProject_Crucipuzzle
     /// </summary>
     public class Casella
     {
+        // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
+
         private char _carattere;
         
         private ConsoleColor _background;

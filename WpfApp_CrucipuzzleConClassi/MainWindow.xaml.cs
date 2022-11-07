@@ -20,6 +20,8 @@ namespace WpfApp_CrucipuzzleConClassi
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
+
         public MainWindow()
         {
             InitializeComponent();
