@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SharedProject_Crucipuzzle
 {
@@ -12,9 +10,14 @@ namespace SharedProject_Crucipuzzle
     public class Casella
     {
         private char _carattere;
-        private bool _impegnata;
-        // private ConsoleColor _background;
-        // private ConsoleColor _foreground;
+        
+        private ConsoleColor _background;
+
+        public string ToWpf()
+        {
+            return "";
+        }
+
         // Altre proprietà...
 
         // TODO: Commentare
@@ -24,7 +27,6 @@ namespace SharedProject_Crucipuzzle
         public Casella()
         {
             _carattere = ' ';
-            _impegnata = false;
             // _background = ConsoleColor.Black
             // _foreground = ConsoleColor.White
         }
@@ -37,11 +39,18 @@ namespace SharedProject_Crucipuzzle
         public Casella(char carattere)
         {
             _carattere = carattere;
-            _impegnata = false;
             // TODO: Aggiungere altro che può servire
         }
 
-        public char Carattere { get; set; }
-        public bool Impegnata { get; set; }
+        public char Carattere { get => _carattere; set => _carattere = value; }
+        public bool Impegnata
+        {
+            get
+            {
+                return _carattere == null ? false : true;
+            }
+        }
     }
 }
+
+
