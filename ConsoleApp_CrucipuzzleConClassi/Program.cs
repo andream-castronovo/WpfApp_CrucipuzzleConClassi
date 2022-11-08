@@ -13,7 +13,7 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
             const string DEFAULT_PATH = @"..\..\Crucipuzzle.txt";
 
-            Console.WriteLine("Hello world");
+            //Console.WriteLine("Hello world");
 
             Tabellone t = new Tabellone(DEFAULT_PATH, ' ');
 
@@ -26,6 +26,9 @@ namespace ConsoleApp_CrucipuzzleConClassi
                 }
                 Console.Write($"\n");
             }
+
+            t.CercaParola(new Parola("NOTE"));
+
 
 
 

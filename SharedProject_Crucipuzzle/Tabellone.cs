@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.IO;
+using System.Linq;
 
 namespace SharedProject_Crucipuzzle
 {
@@ -117,34 +119,33 @@ namespace SharedProject_Crucipuzzle
         /// <param name="btns">Matrice con tutti i bottoni da colorare</param>
         /// <returns>false se nessuna parola è stata trovata; true se anche solo una parola è stata trovata</returns>
         /// <exception cref="Exception">Nessuna parola da cercare</exception>
-        bool CercaIniziale(Parola parolaDaCercare)
+        public Parola[] CercaParola(Parola parolaDaCercare)
         {
             //AggiornaColori(btns);
 
-            int paroleTrovate = 0;
+            Parola[] p = new Parola[100];
+            
+
             for (int i = 0; i < NumeroRighe; i++) // Due for per lo scorrere della matrice
             {
                 for (int j = 0; j < NumeroColonne; j++)
                 {
                     if (parolaDaCercare[0] == _caselle[i, j].Carattere) // Rileva l'iniziale della parola scelta
                     {
-
-                        for (int dX = -1; dX <= 1; dX++) // Due for per girare tutte le direzioni possibili: -1,0,1
+                        int q = 0;
+                        foreach (Direzione d in Enum.GetValues(typeof(Direzione)))
                         {
-                            for (int dY = -1; dY <= 1; dY++)
-                            {
-                                ProvaParola(parolaDaCercare, dX, dY, i, j, ref paroleTrovate);
-                            }
+
+                            p[q] = ProvaParola(parolaDaCercare, d, i, j);
+                            q++;
+
                         }
 
                     }
                 }
             }
 
-            if (paroleTrovate == 0)
-                return false;
-
-            return true;
+            return p;
 
         }
 
@@ -159,9 +160,54 @@ namespace SharedProject_Crucipuzzle
         /// <param name="verticale">Direzione orizzontale. Può essere -1, 0 o 1</param>
         /// <param name="i">Riga della matrice</param>
         /// <param name="j">Colonna della matrice</param>
-        void ProvaParola(Parola parolaDaCercare, int orizzontale, int verticale, int i, int j, ref int paroleTrovate)
+        Parola[] ProvaParola(Parola parolaDaCercare, Direzione d, int i, int j)
         {
+
+            int orizzontale = 0; // Sinistra Destra di default
+            int verticale = 1;
+
+            Parola[] p = new Parola[100];
+
+            switch (d)
+            {
+                //case Direzione.Sx_Dx: // Sinistra Destra di default
+                //    orizzontale = 0;
+                //    verticale = 1;
+                //    break;
+
+                case Direzione.Dx_Sx:
+                    orizzontale = 0;
+                    verticale = -1;
+                    break;
+                case Direzione.Up_Down:
+                    orizzontale = 1;
+                    verticale = 0;
+                    break;
+                case Direzione.Down_Up:
+                    orizzontale = -1;
+                    verticale = 0;
+                    break;
+                case Direzione.UpSx_DownDx:
+                    orizzontale = 1;
+                    verticale = 1;
+                    break;
+                case Direzione.DownDx_UpSx:
+                    orizzontale = -1;
+                    verticale = -1;
+                    break;
+                case Direzione.DownSx_UpDx:
+                    orizzontale = -1;
+                    verticale = 1;
+                    break;
+                case Direzione.UpDx_DownSx:
+                    orizzontale = 1;
+                    verticale = -1;
+                    break;
+            }
+
+
             string parola = "";
+
             // Se la parola è lunga 1 non entra nel for
             for (int k = 0; k < parolaDaCercare.NumCar; k++)
             {
@@ -174,29 +220,58 @@ namespace SharedProject_Crucipuzzle
                     ||
                     i + (k * verticale) < 0 // Controllo in caso esco dalla matrice verticalmente da sinistra
                     )
-                    return;
+                    return null;
 
 
                 // [ righe o colonne + (carattere attuale della parola * la direzione) ]
                 char check = _caselle[i + (k * verticale), j + (k * orizzontale)].Carattere;
+                
                 parola += check; // Compongo la parola lettera per lettera
 
                 //Console.WriteLine(parolaDaCercare.Substring(0,k+1) + " VS " + parola);
 
                 if (parolaDaCercare.Contenuto.Substring(0, k + 1) != parola) // Se una lettera trovata fino ad ora è diversa esci
-                    return;
+                    return null;
 
                 if (parola == parolaDaCercare.Contenuto) // Se trovi la parola, ricomincia, colora i bottoni e aggiungi 1 alle parole trovate
                 {
-                    parola = "";
+                    parolaDaCercare.X = i;
+                    parolaDaCercare.Y = j;
+                    parolaDaCercare.Direzione = d;
+                    return parolaDaCercare;
 
-                    //for (int l = 0; l < parolaDaCercare.NumCar; l++)
-                    //{
-                    //    btns[i + (l * verticale), j + (l * orizzontale)].Background = COLORE_NUOVO;
-                    //}
-                    paroleTrovate++;
                 }
             }
+
+            return null;
+
+        }
+        /// <summary>
+        /// L'esistenza di questo metodo dipende dal fatto che non abbiamo studiato le Liste
+        /// </summary>
+        void SistemaArray<T>(T[] arr)
+        {
+            int newArrSize = 0;
+            int i = 0;
+            while (i < arr.Length)
+            {
+
+                if (arr[i] == null)
+                {
+                    newArrSize = i;
+                    i = arr.Length;
+                }
+
+                i++;
+            }
+
+            T[] newArr = new T[newArrSize];
+
+            for (i = 0; i < newArr.Length; i++)
+            {
+
+            }
+
         }
         ///// <summary>
         ///// Aggiorna i bottoni dal colore nuovo a quello vecchio

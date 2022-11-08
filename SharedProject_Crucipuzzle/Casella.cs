@@ -12,13 +12,6 @@ namespace SharedProject_Crucipuzzle
         // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
 
         private char _carattere;
-        
-        private ConsoleColor _background;
-
-        public string ToWpf()
-        {
-            return "";
-        }
 
         // Altre proprietà...
 
@@ -29,9 +22,10 @@ namespace SharedProject_Crucipuzzle
         public Casella()
         {
             _carattere = ' ';
-            // _background = ConsoleColor.Black
-            // _foreground = ConsoleColor.White
         }
+
+
+
 
         // TODO: Commentare
         /// <summary>
@@ -49,7 +43,7 @@ namespace SharedProject_Crucipuzzle
         {
             get
             {
-                return _carattere == null ? false : true;
+                return _carattere == '\u0000' ? false : true;
             }
         }
     }
