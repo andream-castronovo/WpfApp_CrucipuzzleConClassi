@@ -12,6 +12,7 @@ namespace SharedProject_Crucipuzzle
         // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
 
         private char _carattere;
+        private bool _impegnata;
 
         // Altre proprietà...
 
@@ -21,7 +22,8 @@ namespace SharedProject_Crucipuzzle
         /// </summary>
         public Casella()
         {
-            _carattere = ' ';
+            _carattere = '-';
+            _impegnata = false; 
         }
 
 
@@ -34,18 +36,24 @@ namespace SharedProject_Crucipuzzle
         /// <param name="carattere"></param>
         public Casella(char carattere)
         {
+
+            // 65 = A
+            // 90 = Z
+
+            // 97 = a
+            // 122 = z
+
+            if (carattere >= 97 && carattere <= 122)
+                carattere = (char)(carattere - 32);
+            else if (!(carattere >= 65 && carattere <= 90))
+                throw new Exception("Il carattere non è una lettera (A-Z o a-z)");
+
             _carattere = carattere;
-            // TODO: Aggiungere altro che può servire
+            _impegnata = false;
         }
 
         public char Carattere { get => _carattere; set => _carattere = value; }
-        public bool Impegnata
-        {
-            get
-            {
-                return _carattere == '\u0000' ? false : true;
-            }
-        }
+        public bool Impegnata { get => _impegnata; set => _impegnata = value; }
     }
 }
 

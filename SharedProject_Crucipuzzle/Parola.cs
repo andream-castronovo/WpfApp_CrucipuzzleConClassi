@@ -35,8 +35,8 @@ namespace SharedProject_Crucipuzzle
             _contenuto = par;
             _direzione = Direzione.NULL;
         }
-        // TODO: Altri overload di "public Parola"
 
+        // TODO: Altri overload di "public Parola"
 
         /// <summary>
         /// Verifica se una casella appartiene alla parola
@@ -120,7 +120,16 @@ namespace SharedProject_Crucipuzzle
 
         public Direzione Direzione { get => _direzione; set => _direzione = value; }
 
-        public char this[int i] { get => _contenuto[i]; }
+        public char this[int i] 
+        {
+            get
+            {
+                if (_contenuto != "")
+                    return _contenuto[i];
+                else
+                    return '\u0000';
+            }
+        }
 
 
         #endregion
