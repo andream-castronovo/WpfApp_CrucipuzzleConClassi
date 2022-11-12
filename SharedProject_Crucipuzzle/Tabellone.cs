@@ -243,7 +243,7 @@ namespace SharedProject_Crucipuzzle
                 if (parolaDaCercare.Contenuto.Substring(0, k + 1) != parola) // Se una lettera trovata fino ad ora è diversa esci
                     return;
 
-                if (parola == parolaDaCercare.Contenuto) // Se trovi la parola, ricomincia, colora i bottoni e aggiungi 1 alle parole trovate
+                if (parola == parolaDaCercare.Contenuto) // Se trovi la parola, ricomincia
                 {
                     parolaDaCercare.X = i;
                     parolaDaCercare.Y = j;

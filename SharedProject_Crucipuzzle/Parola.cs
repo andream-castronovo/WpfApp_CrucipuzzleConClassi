@@ -9,8 +9,8 @@ namespace SharedProject_Crucipuzzle
         // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
 
         string _contenuto;
-        int _x;
-        int _y;
+        int _x = -1;
+        int _y = -1;
         Direzione _direzione;
         // TODO: Serve altro, implementarlo
 
@@ -32,7 +32,10 @@ namespace SharedProject_Crucipuzzle
         /// <param name="par"></param>
         public Parola(string par)
         {
-            _contenuto = par;
+            if (par == null)
+                par = "";
+
+            _contenuto = par.ToUpper();
             _direzione = Direzione.NULL;
         }
 
@@ -50,6 +53,10 @@ namespace SharedProject_Crucipuzzle
         /// </returns>
         public bool CoordinataAppartiene(int riga, int colonna)
         {
+            if (_x == -1 || _y == -1)
+                throw new Exception("La parola non ha coordinate se non è stata trovata");
+
+
             int stepR = 0; // Verticale
             int stepC = 0; // Orizzontale
             // TODO: Commentare
@@ -113,6 +120,14 @@ namespace SharedProject_Crucipuzzle
         public int X { get => _x; set => _x = value; }
 
         public int Y { get => _y; set => _y = value; }
+
+        public bool Trovata
+        {
+            get
+            {
+                return _x != -1 && _y != -1;
+            }
+        }
 
         public string Contenuto { get => _contenuto; set => _contenuto = value; }
 
