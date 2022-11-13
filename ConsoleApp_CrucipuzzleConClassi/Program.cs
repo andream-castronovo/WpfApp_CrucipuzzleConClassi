@@ -60,13 +60,8 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
                 string input = Console.ReadLine();
 
-                for (int i = 0; i < Console.WindowWidth; i++)
-                {
-                    for (int j = 0; j < Console.WindowHeight-Console.CursorTop; j++)
-                    {
-                        Console.Write(" ");
-                    }
-                }
+              
+               
                 Console.SetCursorPosition(xCursor, yCursor);
 
                 if (input != "quit")
