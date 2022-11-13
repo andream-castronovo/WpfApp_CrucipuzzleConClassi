@@ -9,7 +9,7 @@ namespace ConsoleApp_CrucipuzzleConClassi
         static void ScriviColorato(string s, ConsoleColor c)
         {
             Console.ForegroundColor = c;
-            Console.WriteLine(s);
+            Console.Write(s);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
         static void Main(string[] args)
@@ -20,20 +20,20 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
             //Console.WriteLine("Hello world");
 
-            //Tabellone t = new Tabellone(DEFAULT_PATH, ' ');
+            Tabellone t = new Tabellone(DEFAULT_PATH, ' ');
 
-            Tabellone t = new Tabellone(10, 13);
+            //Tabellone t = new Tabellone(10, 13);
 
-            char[] alfabeto = new char[26] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+            //char[] alfabeto = new char[26] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-            Random random = new Random();
-            for (int i = 0; i < t.NumeroRighe; i++)
-            {
-                for (int j = 0; j < t.NumeroColonne; j++)
-                {
-                    t[i, j].Carattere = alfabeto[random.Next(0, 26)];
-                }
-            }
+            //Random random = new Random();
+            //for (int i = 0; i < t.NumeroRighe; i++)
+            //{
+            //    for (int j = 0; j < t.NumeroColonne; j++)
+            //    {
+            //        t[i, j].Carattere = alfabeto[random.Next(0, 26)];
+            //    } 
+            //}
 
 
 
@@ -41,6 +41,7 @@ namespace ConsoleApp_CrucipuzzleConClassi
             {
                 for (int iC = 0; iC < t.NumeroColonne; iC++)
                 {
+                    
                     Console.Write($"{t[iR, iC].Carattere}" + (iC != t.NumeroColonne - 1 ? " " : ""));
                 }
                 Console.Write($"\n");
@@ -53,9 +54,20 @@ namespace ConsoleApp_CrucipuzzleConClassi
             {
                 int xCursor = Console.CursorLeft;
                 int yCursor = Console.CursorTop;
+
+                
                 Console.Write("Che parola vuoi cercare? --> ");
 
                 string input = Console.ReadLine();
+
+                for (int i = 0; i < Console.WindowWidth; i++)
+                {
+                    for (int j = 0; j < Console.WindowHeight-Console.CursorTop; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                Console.SetCursorPosition(xCursor, yCursor);
 
                 if (input != "quit")
                 {
@@ -71,28 +83,24 @@ namespace ConsoleApp_CrucipuzzleConClassi
                                 if (t[i, j].Impegnata)
                                 {
                                     Console.SetCursorPosition(j * 2, i);
-                                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                    if (t[i,j].Nuova)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                        t[i, j].Nuova = false;
+                                    }
+                                    else
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                    }
                                     Console.Write(t[i, j].Carattere);
                                     Console.BackgroundColor = ConsoleColor.Black;
                                 }
                             }
                         }
 
-
-
-                        t.ProcessaDirezione(p.Direzione, out int orizzontale, out int verticale);
-
-
-                        for (int i = 0; i < p.NumCar; i++)
-                        {
-                            Console.SetCursorPosition((p.Y + (orizzontale * i)) * 2, p.X + (verticale * i));
-                            Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                            Console.Write(p.Contenuto[i]);
-                        }
-
                         Console.SetCursorPosition(0, yCursor + 1);
                         Console.BackgroundColor = ConsoleColor.Black;
-                        Console.WriteLine("Parola trovata!");
+                        ScriviColorato("Parola trovata!                                                    ", ConsoleColor.Green);
                         Console.SetCursorPosition(xCursor, yCursor);
                         for (int i = 0; i < Console.WindowWidth; i++)
                         {
@@ -102,7 +110,7 @@ namespace ConsoleApp_CrucipuzzleConClassi
                     }
                     else
                     {
-                        Console.WriteLine("Parola non trovata");
+                        ScriviColorato("Parola non trovata                                                ", ConsoleColor.Red);
                         
                         Console.SetCursorPosition(xCursor, yCursor);
                         for (int i = 0; i < Console.WindowWidth; i++)

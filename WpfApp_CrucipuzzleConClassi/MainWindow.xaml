@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid Width="200" Height="100">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Name="btnLoad" Margin="10,5,10,5" Content="Carica file tabellone" Click="btnLoad_Click"/>
+            
+
+
+        </Grid>
     </Grid>
 </Window>

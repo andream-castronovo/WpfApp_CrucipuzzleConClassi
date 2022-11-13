@@ -252,6 +252,7 @@ namespace SharedProject_Crucipuzzle
                     for (int l = 0; l < parolaDaCercare.NumCar; l++)
                     {
                         this[i + (l * verticale), j + (l * orizzontale)].Impegnata = true;
+                        this[i + (l * verticale), j + (l * orizzontale)].Nuova = true;
                     }
 
                 }

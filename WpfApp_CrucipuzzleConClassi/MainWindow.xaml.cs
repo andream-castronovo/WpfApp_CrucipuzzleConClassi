@@ -26,5 +26,10 @@ namespace WpfApp_CrucipuzzleConClassi
         {
             InitializeComponent();
         }
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
