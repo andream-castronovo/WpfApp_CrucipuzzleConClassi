@@ -94,6 +94,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Crucipuzzle.txt" />
+  </ItemGroup>
   <Import Project="..\SharedProject_Crucipuzzle\SharedProject_Crucipuzzle.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,18 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_CrucipuzzleConClassi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Programmato da Andrea Maria Castronovo - 4I - 5/11/2022" Height="450" Width="800">
     <Grid>
-        <Grid Width="200" Height="100">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="100" Margin="10,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Name="btnLoad" Margin="10,5,10,5" Content="Carica file tabellone" Click="btnLoad_Click"/>
+            <Button Grid.Row="0" Grid.ColumnSpan="2" Name="btnLoad" Margin="10,5,10,5" Content="Carica file tabellone" Click="btnLoad_Click"/>
             
+            <!-- &#x0a; = \n -->
+            <Button Click="btnCreate_Click" Grid.Row="1" Grid.Column="1" Name="btnCreate" Width="80" HorizontalAlignment="Right" Content="    Crea&#x0a;Tabellone" Margin="0,5,10,5"/>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Right">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Content="Row" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Content="Col" HorizontalAlignment="Right"/>
+
+                <TextBox Name="txtRow" Grid.Row="0" Grid.Column="1" Width="30" Height="20" HorizontalAlignment="Left"/>
+                <TextBox Name="txtCol" Grid.Row="1" Grid.Column="1"  Width="30" Height="20" HorizontalAlignment="Left"/>
+            </Grid>
 
 
         </Grid>
+
+        <Grid Height="100" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" Content="Parola da cercare"  VerticalAlignment="Top"/>
+            <TextBox Grid.Row="0" Name="txtParola" Width="150" Height="20" Margin="0,0,0,4" VerticalAlignment="Bottom"/>
+
+            <Button Grid.Row="1" Name="btnCerca" Content="Cerca Parola" Margin="10,5,10,5" Click="btnCerca_Click"/>
+
+        </Grid>
+        
+        <Grid Name="grdTabellone"  HorizontalAlignment="Right" Width="100" Height="100" Margin="0,0,10,0"/>
+        <Button x:Name="btnConferma" IsEnabled="False" Content="Conferma tabellone" Width="110" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Click="btnConferma_Click"/>
     </Grid>
+    
 </Window>

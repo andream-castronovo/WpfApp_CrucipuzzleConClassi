@@ -123,6 +123,7 @@ namespace SharedProject_Crucipuzzle
 
  
         // TODO: Sistemare per interazione in classe e incapsulamento
+
         #region Metodo cerca parola
         /// <summary>
         /// Cerca l'iniziale della parola da ricercare nel puzzle

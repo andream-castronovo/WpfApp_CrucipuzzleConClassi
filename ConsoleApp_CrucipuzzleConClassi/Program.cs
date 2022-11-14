@@ -105,13 +105,13 @@ namespace ConsoleApp_CrucipuzzleConClassi
                     }
                     else
                     {
-                        ScriviColorato("Parola non trovata                                                ", ConsoleColor.Red);
                         
                         Console.SetCursorPosition(xCursor, yCursor);
                         for (int i = 0; i < Console.WindowWidth; i++)
                         {
                             Console.Write(" ");
                         }
+                        ScriviColorato("Parola non trovata                                                ", ConsoleColor.Red);
                         Console.SetCursorPosition(xCursor, yCursor);
 
                     }
