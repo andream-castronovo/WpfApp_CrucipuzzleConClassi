@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Programmato da Andrea Maria Castronovo - 4I - 5/11/2022" Height="450" Width="800">
     <Grid>
+        <Grid Name="grdTabellone"  HorizontalAlignment="Right" Width="100" Height="100" Margin="0,0,10,0"/>
+        
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="100" Margin="10,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -55,8 +57,8 @@
 
         </Grid>
         
-        <Grid Name="grdTabellone"  HorizontalAlignment="Right" Width="100" Height="100" Margin="0,0,10,0"/>
-        <Button x:Name="btnConferma" IsEnabled="False" Content="Conferma tabellone" Width="110" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Click="btnConferma_Click"/>
+        
+        <Button x:Name="btnConferma" IsEnabled="False" Content="Conferma tabellone" Width="110" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Click="btnConferma_Click"/>
     </Grid>
     
 </Window>

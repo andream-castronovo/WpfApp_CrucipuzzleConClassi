@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SharedProject_Crucipuzzle
 {
@@ -15,9 +13,8 @@ namespace SharedProject_Crucipuzzle
         // TODO: Serve altro, implementarlo
 
 
-        // TODO: Commentare
         /// <summary>
-        /// 
+        /// Crea una parola senza contenuto
         /// </summary>
         public Parola()
         {
@@ -25,9 +22,8 @@ namespace SharedProject_Crucipuzzle
             _direzione = Direzione.NULL;
         }
 
-        // TODO: Commentare
         /// <summary>
-        /// 
+        /// Crea una parola con un contenuto
         /// </summary>
         /// <param name="par"></param>
         public Parola(string par)
@@ -54,12 +50,14 @@ namespace SharedProject_Crucipuzzle
         public bool CoordinataAppartiene(int riga, int colonna)
         {
             if (_x == -1 || _y == -1)
-                throw new Exception("La parola non ha coordinate se non è stata trovata");
+                throw new Exception("La parola non ha coordinate se non è stata prima trovata");
 
 
             int stepR = 0; // Verticale
             int stepC = 0; // Orizzontale
-            // TODO: Commentare
+            
+            // Switch per convertire la direzione
+            // in spostamenti di coordinate
             switch (_direzione)
             {
                 case Direzione.Sx_Dx:
@@ -95,32 +93,58 @@ namespace SharedProject_Crucipuzzle
                     stepC = -1;
                     break;
                 case Direzione.NULL:
-                    return false;
+                    return false; // Se la parola non ha direzione, non è stata trovata
+                                  // Anche se c'è il controllo all'inizio del metodo
             }
 
 
+            // Imposta le coordinate attuali 
+            // alle coordinate di inizio della parola
             int r = _x;
             int c = _y;
+            
+            // Le coordinate attuali girerano per ogni 
+            // coordinata che appartiene alla parola
+
+            // Due coorinate (x,y) sono associate ad una casella del tabellone
 
             for (int n = 0; n < NumCar; n++)
             {
+                // Se le coordinate passate come parametro
+                // sono uguali ad una coordinata qualsiasi
+                // che appartiene alla parola, allora returna true
                 if (r == riga && c == colonna) return true;
 
+                // altrimenti imposta come nuove coordinate attuali
+                // le coordinate spostate per gli step definiti in base
+                // alla direzione della parola trovata
                 r = r + stepR;
                 c = c + stepC;
             }
 
+            // Qui arriverà solo se non è stata
+            // trovata nessuna coordinata appartenente alla parola
+            // uguale a quelle richieste
 
-            return false;
+            return false; 
         }
 
 
         #region Proprietà
 
+        /// <summary>
+        /// Riga d'inizio della parola
+        /// </summary>
         public int X { get => _x; set => _x = value; }
 
+        /// <summary>
+        /// Colonna d'inizio della parola
+        /// </summary>
         public int Y { get => _y; set => _y = value; }
 
+        /// <summary>
+        /// Se la parola è stata trovata o no
+        /// </summary>
         public bool Trovata
         {
             get
@@ -128,13 +152,27 @@ namespace SharedProject_Crucipuzzle
                 return _x != -1 && _y != -1;
             }
         }
-
+        
+        /// <summary>
+        /// Contenuto della parola
+        /// </summary>
         public string Contenuto { get => _contenuto; set => _contenuto = value; }
 
+        /// <summary>
+        /// Numero di caratteri
+        /// </summary>
         public int NumCar { get => _contenuto.Length; }
-
+        
+        /// <summary>
+        /// Direzione della parola trovata
+        /// </summary>
         public Direzione Direzione { get => _direzione; set => _direzione = value; }
 
+        /// <summary>
+        /// Simula una stringa, restituendo il carattere relativo all'indice i
+        /// </summary>
+        /// <param name="i">Posizione nella stringa</param>
+        /// <returns>Carattere relativo alla posizione</returns>
         public char this[int i] 
         {
             get

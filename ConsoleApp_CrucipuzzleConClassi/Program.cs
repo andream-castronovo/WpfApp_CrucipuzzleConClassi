@@ -20,8 +20,11 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
             //Console.WriteLine("Hello world");
 
-            Tabellone t = new Tabellone(DEFAULT_PATH, ' ');
+            #region Metodo con file
+            //Tabellone t = new Tabellone(DEFAULT_PATH, ' ');
+            #endregion
 
+            #region Metodo con righe e colonne
             //Tabellone t = new Tabellone(10, 13);
 
             //char[] alfabeto = new char[26] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
@@ -34,7 +37,11 @@ namespace ConsoleApp_CrucipuzzleConClassi
             //        t[i, j].Carattere = alfabeto[random.Next(0, 26)];
             //    } 
             //}
+            #endregion
 
+            #region Metodo senza nulla
+            Tabellone t = new Tabellone();
+            #endregion
 
 
             for (int iR = 0; iR < t.NumeroRighe; iR++)

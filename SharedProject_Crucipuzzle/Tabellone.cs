@@ -1,7 +1,6 @@
 ﻿using System;
-using System.CodeDom;
 using System.IO;
-using System.Linq;
+
 
 namespace SharedProject_Crucipuzzle
 {
@@ -11,6 +10,12 @@ namespace SharedProject_Crucipuzzle
 
         private Casella[,] _caselle; // TODO: Serve altro, implementarlo
 
+        /// <summary>
+        /// Ad una posizione r e c nel tabellone corrisponde una casella
+        /// </summary>
+        /// <param name="r">Riga</param>
+        /// <param name="c">Colonna</param>
+        /// <returns>Casella relativa alla posizione</returns>
         public Casella this[int r, int c]
         {
             get
@@ -23,27 +28,43 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
-
+        /// <summary>
+        /// Costruttore vuoto per permettere dinamicità nelle inizializzazioni fuori la classe
+        /// </summary>
         public Tabellone() { }
 
+        /// <summary>
+        /// Crezione di un tabellone con definite righe e colonne
+        /// </summary>
+        /// <param name="nRighe">Numero di righe</param>
+        /// <param name="nColonne">Numero di colonne</param>
         public Tabellone(int nRighe, int nColonne)
         {
             _caselle = new Casella[nRighe, nColonne];
 
+            // Devo inizializzare ogni casella a mano
+            // perché la matrice di oggetti sarà riempita
+            // di "null" di default
             for (int i = 0; i < nRighe; i++)
             {
                 for (int j = 0; j < nColonne; j++)
                 {
-                    _caselle[i, j] = new Casella();
+                    _caselle[i, j] = new Casella(); // Caselle vuote con valori di default
                 }
             }
         }
 
-        public Tabellone(string fileTabellone, char separatoreLettere)
+        /// <summary>
+        /// Creazione di un tabellone da un file
+        /// </summary>
+        /// <param name="fileTabellone">Percorso al file contenente i caratteri da mettere in ogni casella</param>
+        /// <param name="separatoreLettere">Separatore che nel file separa le lettere</param>
+        /// <exception cref="Exception">Problema con il file</exception>
+        public Tabellone(string fileTabellone, char separatoreLettere = ' ')
         {
 
             char[,] caratteri;
-            
+
             try
             {
                 caratteri = CaricaMatriceDaFile(fileTabellone, separatoreLettere);
@@ -64,6 +85,14 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
+        // TODO: Altri costruttori
+
+        /// <summary>
+        /// Carica una matrice di lettere da un file
+        /// </summary>
+        /// <param name="file">Percorso del file</param>
+        /// <param name="separatore">Separatore che separa le lettere nel file</param>
+        /// <returns>Matrice di char</returns>
         char[,] CaricaMatriceDaFile(string file, char separatore)
         {
             #region Converto il file in una stringa lunga
@@ -71,7 +100,6 @@ namespace SharedProject_Crucipuzzle
             string strFile = sr.ReadToEnd().Replace("\r", ""); // \r è il carattere che fa muovere il cursore
             sr.Close();
             #endregion
-
 
             string[] righe = strFile.Split('\n'); // Qui ho le righe
 
@@ -81,7 +109,7 @@ namespace SharedProject_Crucipuzzle
             int nColonne = strFile.Replace(separatore.ToString(), "").IndexOf('\n'); // L'indice di \n è il numero di caratteri, quindi colonne
             int nRighe = righe.Length;
 
-
+            // Matrice in cui metterò i caratteri
             char[,] caratteri = new char[nRighe, nColonne];
 
             for (int i = 0; i < nRighe; i++)
@@ -93,10 +121,17 @@ namespace SharedProject_Crucipuzzle
                     caratteri[i, j] = lettere[j][0];
                 }
             }
-            
+
             return caratteri;
         }
 
+
+        // TODO: Ho commentato fino a qui
+
+        /// <summary>
+        /// Controlla se ci sono caselle non 
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         void ControllaCaselle()
         {
             for (int i = 0; i < NumeroRighe; i++)
@@ -109,7 +144,7 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
-        // TODO: Altri costruttori
+        public Casella[,] Caselle { get => _caselle; set => _caselle = value; }
 
         /// <summary>
         /// -1 se non esiste la matrice
@@ -121,7 +156,6 @@ namespace SharedProject_Crucipuzzle
         /// </summary>
         public int NumeroColonne { get => _caselle != null ? _caselle.GetLength(1) : -1; }
 
- 
         // TODO: Sistemare per interazione in classe e incapsulamento
 
         #region Metodo cerca parola
@@ -167,7 +201,7 @@ namespace SharedProject_Crucipuzzle
         /// 
 
 
-        public void ProcessaDirezione (Direzione d, out int orizzontale, out int verticale)
+        public void ProcessaDirezione(Direzione d, out int orizzontale, out int verticale)
         {
             orizzontale = 0; // Sinistra Destra di default
             verticale = 1;
@@ -236,7 +270,7 @@ namespace SharedProject_Crucipuzzle
 
                 // [ righe o colonne + (carattere attuale della parola * la direzione) ]
                 char check = _caselle[i + (k * verticale), j + (k * orizzontale)].Carattere;
-                
+
                 parola += check; // Compongo la parola lettera per lettera
 
                 //Console.WriteLine(parolaDaCercare.Substring(0,k+1) + " VS " + parola);
@@ -259,27 +293,6 @@ namespace SharedProject_Crucipuzzle
                 }
             }
         }
-        
-
-        ///// <summary>
-        ///// Aggiorna i bottoni dal colore nuovo a quello vecchio
-        ///// </summary>
-        ///// <param name="btns"></param>
-        //void AggiornaColori(Button[,] btns)
-        //{
-        //    for (int i = 0; i < btns.GetLength(0); i++)
-        //    {
-        //        for (int j = 0; j < btns.GetLength(1); j++)
-        //        {
-        //            if (btns[i, j].Background == COLORE_NUOVO)
-        //                btns[i, j].Background = COLORE;
-        //        }
-        //    }
-        //}
-
-
         #endregion
-
-
     }
 }

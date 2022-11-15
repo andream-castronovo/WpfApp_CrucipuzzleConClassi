@@ -32,6 +32,9 @@ namespace WpfApp_CrucipuzzleConClassi
             InitializeComponent();
 
             MessageBox.Show("La grafica e il controllo errori nell'ambito dell'UI non è curato come le classi in quanto l'esercitazione prevedeva solo il funzionamento di queste", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            btnCerca.IsEnabled = false;
+            btnConferma.Visibility = Visibility.Collapsed;
         }
 
         Tabellone _t;
@@ -52,6 +55,9 @@ namespace WpfApp_CrucipuzzleConClassi
                     _btns[iR,iC].Content = _t[iR, iC].Carattere;
                 }
             }
+
+            btnCerca.IsEnabled = true;
+            
         }
 
         private void btnCerca_Click(object sender, RoutedEventArgs e)
@@ -171,10 +177,25 @@ namespace WpfApp_CrucipuzzleConClassi
 
             _txts = new TextBox[r, c];
             GeneraTextox(_txts);
+
+            btnConferma.Visibility = Visibility.Visible;
             btnConferma.IsEnabled = true;
+            btnCerca.IsEnabled = false;
+
             MessageBox.Show("Riempi tutte le txtbox, dopo conferma");
             
             
+        }
+
+        void RiempiBottoni(Button[,] btns, Tabellone t)
+        {
+            for (int i = 0; i < t.NumeroRighe; i++)
+            {
+                for (int j = 0; j < t.NumeroColonne; j++)
+                {
+                    btns[i, j].Content = t[i, j].Carattere;
+                }
+            }
         }
 
         private void btnConferma_Click(object sender, RoutedEventArgs e)
@@ -187,7 +208,7 @@ namespace WpfApp_CrucipuzzleConClassi
                 {
                     for (int c = 0; c < _txts.GetLength(1); c++)
                     {
-                        if (_txts[i, c].Text == "" || _txts.Length == 1)
+                        if (_txts[i,c].Text.Length != 1)
                         {
                             throw new Exception("Problem");
                         }
@@ -206,12 +227,16 @@ namespace WpfApp_CrucipuzzleConClassi
                 for (int c = 0; c < _txts.GetLength(1); c++)
                 {
                     _t[i, c].Carattere = _txts[i, c].Text.ToUpper()[0];
-                    _btns[i, c].Content = _txts[i, c].Text;
                     _txts[i, c].Visibility = Visibility.Collapsed;
                 }
             }
 
 
+            RiempiBottoni(_btns, _t);
+
+            btnConferma.IsEnabled = false;
+            btnConferma.Visibility = Visibility.Collapsed;
+            btnCerca.IsEnabled = true;
 
 
 

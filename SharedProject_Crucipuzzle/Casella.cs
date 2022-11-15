@@ -5,7 +5,7 @@ namespace SharedProject_Crucipuzzle
 
     // TODO: Commentare
     /// <summary>
-    /// 
+    /// Contiene una lettera che insieme ad altre caselle potrebbe formare una parola
     /// </summary>
     public class Casella
     {
@@ -15,11 +15,8 @@ namespace SharedProject_Crucipuzzle
         private bool _impegnata;
         private bool _nuova;
 
-        // Altre proprietà...
-
-        // TODO: Commentare
         /// <summary>
-        /// 
+        /// Crea una nuova casella con il carattere "-" di default
         /// </summary>
         public Casella()
         {
@@ -33,10 +30,10 @@ namespace SharedProject_Crucipuzzle
         /// <summary>
         /// Crea una nuova casella con il carattere all'interno di essa
         /// </summary>
-        /// <param name="carattere">Carattere da inserire nella casella</param>
+        /// <param name="carattere">Carattere nella casella</param>
         public Casella(char carattere)
         {
-
+            // ASCII values
             // 65 = A
             // 90 = Z
 
