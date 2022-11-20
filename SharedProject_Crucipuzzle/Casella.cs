@@ -3,7 +3,6 @@
 namespace SharedProject_Crucipuzzle
 {
 
-    // TODO: Commentare
     /// <summary>
     /// Contiene una lettera che insieme ad altre caselle potrebbe formare una parola
     /// </summary>
@@ -24,38 +23,44 @@ namespace SharedProject_Crucipuzzle
             _impegnata = false; 
         }
 
-
-
-
         /// <summary>
         /// Crea una nuova casella con il carattere all'interno di essa
         /// </summary>
         /// <param name="carattere">Carattere nella casella</param>
         public Casella(char carattere)
         {
-            // ASCII values
-            // 65 = A
-            // 90 = Z
-
-            // 97 = a
-            // 122 = z
-
-            // Controllo se il carattere inserito è una lettera minuscola
-            // Se lo è, la rende maiuscola
-            if (carattere >= 97 && carattere <= 122)
-                carattere = (char)(carattere - 32);
-            // Controllo se il carattere NON è una lettera maiuscola
-            else if (!(carattere >= 65 && carattere <= 90))
-                throw new Exception("Il carattere non è una lettera (A-Z o a-z)");
-
-            _carattere = carattere;
+            Carattere = carattere;
             _impegnata = false;
         }
 
         /// <summary>
-        /// Carattere all'interno della casella
+        /// Carattere
         /// </summary>
-        public char Carattere { get => _carattere; set => _carattere = value; }
+        public char Carattere 
+        {
+            get => _carattere;
+            set
+            {
+                // ASCII values
+                // 65 = A
+                // 90 = Z
+
+                // 97 = a
+                // 122 = z
+
+                // Controllo se il carattere inserito è una lettera minuscola
+                // Se lo è, la rende maiuscola
+                if (value >= 97 && value <= 122)
+                    value = (char)(value - 32);
+                
+                // Controllo se il carattere NON è una lettera maiuscola
+                else if (!(value >= 65 && value <= 90))
+                    throw new Exception("Il carattere non è una lettera (A-Z o a-z)");
+
+                _carattere = value;
+
+            }
+        }
         
         /// <summary>
         /// Se il carattere all'interno della casella fa parte di una parola trovata

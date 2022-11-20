@@ -10,8 +10,6 @@ namespace SharedProject_Crucipuzzle
         int _x = -1;
         int _y = -1;
         Direzione _direzione;
-        // TODO: Serve altro, implementarlo
-
 
         /// <summary>
         /// Crea una parola senza contenuto
@@ -28,14 +26,11 @@ namespace SharedProject_Crucipuzzle
         /// <param name="par"></param>
         public Parola(string par)
         {
-            if (par == null)
-                par = "";
+            par = par ?? "";
 
             _contenuto = par.ToUpper();
             _direzione = Direzione.NULL;
         }
-
-        // TODO: Altri overload di "public Parola"
 
         /// <summary>
         /// Verifica se una casella appartiene alla parola

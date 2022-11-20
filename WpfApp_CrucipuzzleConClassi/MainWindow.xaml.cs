@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Threading;
+
 using Microsoft.Win32;
 
 using SharedProject_Crucipuzzle;
@@ -35,14 +37,19 @@ namespace WpfApp_CrucipuzzleConClassi
 
             btnCerca.IsEnabled = false;
             btnConferma.Visibility = Visibility.Collapsed;
+
         }
 
         Tabellone _t;
         Button[,] _btns;
         TextBox[,] _txts;
 
+
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
+            
+
+
             _t = new Tabellone(CercaFile(), ' ');
             _btns = new Button[_t.NumeroRighe, _t.NumeroColonne];
 

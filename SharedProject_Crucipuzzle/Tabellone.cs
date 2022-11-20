@@ -8,7 +8,7 @@ namespace SharedProject_Crucipuzzle
     {
         // Programmato da: Andrea Maria Castronovo - 4°I - Data Inizio: 5/11/2022
 
-        private Casella[,] _caselle; // TODO: Serve altro, implementarlo
+        private Casella[,] _caselle; 
 
         /// <summary>
         /// Ad una posizione r e c nel tabellone corrisponde una casella
@@ -85,8 +85,6 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
-        // TODO: Altri costruttori
-
         /// <summary>
         /// Carica una matrice di lettere da un file
         /// </summary>
@@ -126,10 +124,8 @@ namespace SharedProject_Crucipuzzle
         }
 
 
-        // TODO: Ho commentato fino a qui
-
         /// <summary>
-        /// Controlla se ci sono caselle non 
+        /// Controlla se ci sono caselle non inizializzate
         /// </summary>
         /// <exception cref="Exception"></exception>
         void ControllaCaselle()
@@ -144,7 +140,26 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
-        public Casella[,] Caselle { get => _caselle; set => _caselle = value; }
+        /// <summary>
+        /// Matrice di caselle contenute nel Tabellone
+        /// </summary>
+        public Casella[,] Caselle
+        {
+            get => _caselle;
+            set 
+            {
+                _caselle = value;
+
+                for (int i = 0; i < _caselle.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _caselle.GetLength(1); j++)
+                    {
+                        _caselle[i,j] = new Casella();
+                    }
+                }
+                 
+            }
+        }
 
         /// <summary>
         /// -1 se non esiste la matrice
@@ -155,8 +170,6 @@ namespace SharedProject_Crucipuzzle
         /// -1 se non esiste la matrice
         /// </summary>
         public int NumeroColonne { get => _caselle != null ? _caselle.GetLength(1) : -1; }
-
-        // TODO: Sistemare per interazione in classe e incapsulamento
 
         #region Metodo cerca parola
         /// <summary>
@@ -187,20 +200,12 @@ namespace SharedProject_Crucipuzzle
             return parolaDaCercare;
         }
 
-
-
         /// <summary>
-        /// Metodo per provare a comporre la parola partendo dall'iniziale della parola data
+        /// Prende la direzione la trasforma in movimento orizzontale e verticale
         /// </summary>
-        /// <param name="parolaDaCercare">Parola da cercare</param>
-        /// <param name="lettere">Matrice contenente le lettere del puzzle</param>
-        /// <param name="orizzontale">Direzione orizzontale. Può essere -1, 0 o 1</param>
-        /// <param name="verticale">Direzione orizzontale. Può essere -1, 0 o 1</param>
-        /// <param name="i">Riga della matrice</param>
-        /// <param name="j">Colonna della matrice</param>
-        /// 
-
-
+        /// <param name="d">Direzione da trasformare</param>
+        /// <param name="orizzontale">Movimento orizzontale</param>
+        /// <param name="verticale">Movimento verticale</param>
         public void ProcessaDirezione(Direzione d, out int orizzontale, out int verticale)
         {
             orizzontale = 0; // Sinistra Destra di default
@@ -244,6 +249,13 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
+        /// <summary>
+        /// Prova a comporre la parola verso la direzione data
+        /// </summary>
+        /// <param name="parolaDaCercare">Parola da cercare</param>
+        /// <param name="d">Direzione verso cui cercare la parola</param>
+        /// <param name="i">Riga di partenza della ricerca</param>
+        /// <param name="j">Colonna di partenza della ricerca</param>
         void ProvaParola(Parola parolaDaCercare, Direzione d, int i, int j)
         {
             int orizzontale;
