@@ -1,22 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using System.Threading;
-
 using Microsoft.Win32;
-
 using SharedProject_Crucipuzzle;
 
 
@@ -33,7 +19,7 @@ namespace WpfApp_CrucipuzzleConClassi
         {
             InitializeComponent();
 
-            MessageBox.Show("La grafica e il controllo errori nell'ambito dell'UI non è curato come le classi in quanto l'esercitazione prevedeva solo il funzionamento di queste", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show("La grafica e il controllo errori nell'ambito dell'UI non è curato come le classi in quanto l'esercitazione prevedeva solo il funzionamento di queste", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
             btnCerca.IsEnabled = false;
             btnConferma.Visibility = Visibility.Collapsed;
@@ -48,9 +34,16 @@ namespace WpfApp_CrucipuzzleConClassi
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             
+            try
+            {
+                _t = new Tabellone(CercaFile(), ' ');
 
-
-            _t = new Tabellone(CercaFile(), ' ');
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Errore: " + ex.Message);
+                return;
+            }
             _btns = new Button[_t.NumeroRighe, _t.NumeroColonne];
 
             GeneraBottoni(_btns);
@@ -95,7 +88,10 @@ namespace WpfApp_CrucipuzzleConClassi
 
         }
 
-
+        /// <summary>
+        /// Genera i bottoni che conterranno le caselle
+        /// </summary>
+        /// <param name="btns">Matrice di bottoni</param>
         void GeneraBottoni(Button[,] btns)
         {
             // Dimensione griglia in base a quanti bottoni ci sono
@@ -124,6 +120,10 @@ namespace WpfApp_CrucipuzzleConClassi
                 }
             }
         }
+        /// <summary>
+        /// Genera le TextBox per il compilamento del tabellone manuale
+        /// </summary>
+        /// <param name="txts">Array textbox</param>
         void GeneraTextox(TextBox[,] txts)
         {
             // Dimensione griglia in base a quanti bottoni ci sono
@@ -152,6 +152,11 @@ namespace WpfApp_CrucipuzzleConClassi
                 }
             }
         }
+
+        /// <summary>
+        /// Usa OpenFileDialog per trovare il file
+        /// </summary>
+        /// <returns>Stringa con percorso del file</returns>
         string CercaFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -194,6 +199,11 @@ namespace WpfApp_CrucipuzzleConClassi
             
         }
 
+        /// <summary>
+        /// Riempie i bottoni con il content del Tabellone
+        /// </summary>
+        /// <param name="btns">Matrice di bottoni</param>
+        /// <param name="t">Tabellone</param>
         void RiempiBottoni(Button[,] btns, Tabellone t)
         {
             for (int i = 0; i < t.NumeroRighe; i++)
@@ -217,7 +227,7 @@ namespace WpfApp_CrucipuzzleConClassi
                     {
                         if (_txts[i,c].Text.Length != 1)
                         {
-                            throw new Exception("Problem");
+                            throw new Exception($"Assicurati di aver messo solo un carattere nella casella r{i} c{c}");
                         }
                     }
                 }

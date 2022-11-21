@@ -71,7 +71,7 @@ namespace SharedProject_Crucipuzzle
             }
             catch (Exception ex)
             {
-                throw new Exception("Problema con il file: " + ex.Message);
+                throw new Exception("Problema con il file, assicurati di aver caricato un file contenente una tabella di caratteri");
             }
 
             _caselle = new Casella[caratteri.GetLength(0), caratteri.GetLength(1)];
