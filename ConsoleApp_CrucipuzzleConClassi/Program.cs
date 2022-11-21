@@ -153,7 +153,7 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
             bool repeat = true;
 
-            Console.WriteLine("\nScrivi \"quit\" per uscire");
+            Console.WriteLine("\nScrivi \"/quit\" per uscire o \"/soluzione\"");
             while (repeat)
             {
                 int xCursor = Console.CursorLeft;
@@ -168,7 +168,7 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
                 Console.SetCursorPosition(xCursor, yCursor);
 
-                if (input != "quit")
+                if (input != "/quit" && input != "/soluzione")
                 {
                     Parola p = t.CercaParola(new Parola(input));
 
@@ -220,9 +220,13 @@ namespace ConsoleApp_CrucipuzzleConClassi
 
                     }
                 }
-                else
+                else if (input == "/quit")
                 {
                     repeat = false;
+                }
+                else if (input == "/soluzione")
+                {
+                    Console.WriteLine(t.Soluzione());
                 }
 
             }

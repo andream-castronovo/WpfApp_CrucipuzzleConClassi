@@ -140,6 +140,22 @@ namespace SharedProject_Crucipuzzle
             }
         }
 
+        public string Soluzione()
+        {
+            string parola = "";
+            for (int i = 0; i < NumeroRighe; i++)
+            {
+                for (int j = 0; j < NumeroColonne; j++)
+                {
+                    if (!this[i,j].Impegnata)
+                    {
+                        parola += this[i, j].Carattere;
+                    }
+                }
+            }
+            return parola;
+        }
+
         /// <summary>
         /// Matrice di caselle contenute nel Tabellone
         /// </summary>
@@ -160,6 +176,8 @@ namespace SharedProject_Crucipuzzle
                  
             }
         }
+
+
 
         /// <summary>
         /// -1 se non esiste la matrice

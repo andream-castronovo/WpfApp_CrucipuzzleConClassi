@@ -22,6 +22,7 @@ namespace WpfApp_CrucipuzzleConClassi
             //MessageBox.Show("La grafica e il controllo errori nell'ambito dell'UI non è curato come le classi in quanto l'esercitazione prevedeva solo il funzionamento di queste", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
             btnCerca.IsEnabled = false;
+            btnSolz.IsEnabled = false;
             btnConferma.Visibility = Visibility.Collapsed;
 
         }
@@ -57,6 +58,9 @@ namespace WpfApp_CrucipuzzleConClassi
             }
 
             btnCerca.IsEnabled = true;
+            btnSolz.IsEnabled = true;
+            btnConferma.Visibility = Visibility.Collapsed;
+            btnConferma.IsEnabled = false;
             
         }
 
@@ -193,6 +197,7 @@ namespace WpfApp_CrucipuzzleConClassi
             btnConferma.Visibility = Visibility.Visible;
             btnConferma.IsEnabled = true;
             btnCerca.IsEnabled = false;
+            btnSolz.IsEnabled = false;
 
             MessageBox.Show("Riempi tutte le txtbox, dopo conferma");
             
@@ -254,9 +259,14 @@ namespace WpfApp_CrucipuzzleConClassi
             btnConferma.IsEnabled = false;
             btnConferma.Visibility = Visibility.Collapsed;
             btnCerca.IsEnabled = true;
+            btnSolz.IsEnabled = true;
 
 
+        }
 
+        private void btnSolz_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(_t.Soluzione(),"Soluzione");
         }
     }
 }
